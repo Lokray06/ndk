@@ -1,0 +1,93 @@
+namespace nebula.core
+{
+    /// Provides constants and static methods for trigonometric, logarithmic,
+    /// and other common mathematical functions. This is a native class
+    /// that wraps the C++ <cmath> library functionality.
+    native class Math
+    {
+        // --- Constants ---
+
+        /// Represents the ratio of the circumference of a circle to its diameter, specified by the constant π.
+        /// Wraps the C++ macro 'M_PI'.
+        public static wrapper double PI -> "M_PI";
+
+        /// Represents the base of the natural logarithm, specified by the constant e.
+        /// Wraps the C++ macro 'M_E'.
+        public static wrapper double E -> "M_E";
+
+
+        // --- Basic Operations ---
+
+        /// Returns the absolute value of an integer.
+        public static wrapper int abs(int value) -> "std::abs(${value})";
+
+        /// Returns the absolute value of a double-precision floating-point number.
+        public static wrapper double abs(double value) -> "std::abs(${value})";
+
+        /// Returns the larger of two integers.
+        public static wrapper int max(int a, int b) -> "std::max(${a}, ${b})";
+
+        /// Returns the larger of two double-precision floating-point numbers.
+        public static wrapper double max(double a, double b) -> "std::max(${a}, ${b})";
+
+        /// Returns the smaller of two integers.
+        public static wrapper int min(int a, int b) -> "std::min(${a}, ${b})";
+
+        /// Returns the smaller of two double-precision floating-point numbers.
+        public static wrapper double min(double a, double b) -> "std::min(${a}, ${b})";
+
+        /// Restricts an integer value to be within a specified range.
+        public static wrapper int clamp(int value, int min, int max) -> "std::max(${min}, std::min(${value}, ${max}))"; 
+
+        /// Restricts a double value to be within a specified range.
+        public static wrapper double clamp(double value, double min, double max) -> "std::max(${min}, std::min(${value}, ${max}))";
+
+
+        // --- Power and Root Functions ---
+
+        /// Returns the square root of a specified number.
+        public static wrapper double sqrt(double d) -> "std::sqrt(${d})";
+
+        /// Returns a specified number raised to the specified power.
+        public static wrapper double pow(double base, double exponent) -> "std::pow(${base}, ${exponent})";
+
+
+        // --- Rounding Functions ---
+
+        /// Returns the smallest integer greater than or equal to the specified number.
+        public static wrapper double ceil(double d) -> "std::ceil(${d})";
+
+        /// Returns the largest integer less than or equal to the specified number.
+        public static wrapper double floor(double d) -> "std::floor(${d})";
+
+        /// Rounds a value to the nearest integer.
+        public static wrapper double round(double d) -> "std::round(${d})";
+
+
+        // --- Logarithmic and Exponential Functions ---
+
+        /// Returns the natural (base e) logarithm of a specified number.
+        public static wrapper double log(double d) -> "std::log(${d})";
+
+        /// Returns the base 10 logarithm of a specified number.
+        public static wrapper double log10(double d) -> "std::log10(${d})";
+
+        /// Returns e raised to the specified power.
+        public static wrapper double exp(double d) -> "std::exp(${d})";
+
+
+        // --- Trigonometric Functions ---
+
+        /// Returns the sine of the specified angle.
+        public static wrapper double sin(double a) -> "std::sin(${a})";
+
+        /// Returns the cosine of the specified angle.
+        public static wrapper double cos(double a) -> "std::cos(${a})";
+
+        /// Returns the tangent of the specified angle.
+        public static wrapper double tan(double a) -> "std::tan(${a})";
+
+        /// Returns the angle whose tangent is the quotient of two specified numbers.
+        public static wrapper double atan2(double y, double x) -> "std::atan2(${y}, ${x})";
+    }
+}
