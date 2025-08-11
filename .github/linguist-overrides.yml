@@ -1,0 +1,11 @@
+# .github/linguist-overrides.yml
+
+Nebula:
+  type: programming
+  aliases:
+    - neb-lang
+  extensions:
+    - .neb
+  tm_scope: source.nebula
+  ace_mode: text
+  color: "#e73350"
