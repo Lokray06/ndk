@@ -1,21 +1,21 @@
 namespace nebula.core
 {
-    native class String extends Object
+    native public class String
     {
-        public String(){}
+        native public String();
 
         /// Returns the number of characters in the string.
-        public wrapper int length() -> "static_cast<int>(this->_data.length())";
+        native public static int length();
 
         // This operator is still inefficient for chaining, which we'll fix in the generator.
-        public wrapper String operator+(String other) -> "std::make_shared<nebula::core::String>(this->raw() + (${other} ? ${other}->raw() : \"\"))";
+        native public string operator+(String other);
         
-        public wrapper bool operator==(Object other) -> "(([&]() { auto other_str = std::dynamic_pointer_cast<nebula::core::String>(${other}); if (other_str) { return this->raw() == other_str->raw(); } return false; })());";
+        native public bool operator==(Object other);
 
         /// Overrides Object's toString to return the string itself.
-        public wrapper string toString() -> "std::make_shared<nebula::core::String>(this->_data)";
+        native public string toString();
 
         /// Overrides Object's hashCode to compute a hash from the string's content.
-        public wrapper string hashCode() -> "std::make_shared<nebula::core::String>(std::to_string(std::hash<std::string>{}(this->_data)))";
+        native public string hashCode();
     }
 }
