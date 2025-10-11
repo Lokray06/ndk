@@ -1,21 +1,37 @@
 namespace nebula.core
 {
-    native class String extends Object
-    {
-        public String(){}
-
-        /// Returns the number of characters in the string.
-        public wrapper int length() -> "static_cast<int>(this->_data.length())";
-
-        // This operator is still inefficient for chaining, which we'll fix in the generator.
-        public wrapper String operator+(String other) -> "std::make_shared<nebula::core::String>(this->raw() + (${other} ? ${other}->raw() : \"\"))";
-        
-        public wrapper bool operator==(Object other) -> "(([&]() { auto other_str = std::dynamic_pointer_cast<nebula::core::String>(${other}); if (other_str) { return this->raw() == other_str->raw(); } return false; })());";
-
-        /// Overrides Object's toString to return the string itself.
-        public wrapper string toString() -> "std::make_shared<nebula::core::String>(this->_data)";
-
-        /// Overrides Object's hashCode to compute a hash from the string's content.
-        public wrapper string hashCode() -> "std::make_shared<nebula::core::String>(std::to_string(std::hash<std::string>{}(this->_data)))";
+    native public class String
+    {   
+        native public int length;
+        native public char charAt(int index);
+        native public string substring(int start, int length);
+        native public bool equals(string other);
+        native public string concat(string other);
+        native public int indexOf(char c);
     }
+    
+    // Potential addition
+    /*
+    native immutable class String
+    {
+        native public int length();
+        native public char charAt(int index);
+        native public string substring(int start, int length);
+        native public bool equals(string other);
+        native public string concat(string other);
+        native public int indexOf(char c);
+    }
+
+    native class MutableString
+    {
+        native public int length();
+        native public void append(string other);
+        native public void insert(int index, string value);
+        native public void remove(int start, int length);
+        native public char charAt(int index);
+        native public void setCharAt(int index, char c);
+        native public void clear();
+        native public string toString();
+    }
+    */
 }
