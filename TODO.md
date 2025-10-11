@@ -28,7 +28,7 @@ Yet to define:
 - How do you cast a tuple, should that even be possible?
 
 ### Ternary operators:✅
-This throws errors because the compiler's parser doesn't expect the syntax:
+This throws errors right now (to implement) because the compiler's parser doesn't expect the syntax:
 ```csharp
 int[] numbers = {1,2,3,4,5};
 Console.println((numbers.size > 0 || numbers == null) ? numbers.size : "numbers is empty / uninitialized.");
@@ -70,18 +70,27 @@ Yet to define:
 ### Named parameters:
 Named parameters are an optional feature that allows to pass the parameters to any method in any order they want.
 
-Optional parameters define a parameter with a default value with the syntax: `paramName: type? = defaultValue`. Therefore you can ommit that paremeter when calling the method, and it'll use the default value specified.
+Optional parameters define a parameter with a default value with the syntax: `type paramName = defaultValue`. Therefore you can ommit that paremeter when calling the method, and it'll use the default value specified.
 
 ```csharp
 // In this constructor the optionalParamValue of type int is optional, with a default value of 3
-public Class(param1: float, optionalParam: int? = 3){}
+public Class(float param1, int optionalParam = 3){}
 
 // This is instantiated with param1 = 3.4f and optionalParam = 3
 Class instance1 = new Class(param1: 3.4f); 
 
 // As the parameters are named, you're not tied to the declared order:
 // This is instantiated with param1 = 3.4f and optionalParam = 6
-Class instance1 = new Class(optionalParam: 6, param1: 3.4f); 
+Class instance2 = new Class(optionalParam: 6, param1: 3.4f); 
+
+// This is also valid, theres no need to put the names, if the ordering is valid
+Class instance3 = new Class(1f, 2);
+Class instance4 = new Class(1f);
+
+// To unorder them you would do:
+Class instance4 = new Class(optionalParam: 2, param1: 4);
+
+// Once a call is made with that named param syntax all the parameters ahave to be passed with the same syntax. Ofc u can still avoid the optional ones, and make the call with any param ordering u want
 ```
 
 You can still use your typical paremeters:
@@ -106,10 +115,12 @@ foreach (Type instance in listOfType)
 ```
 
 ### Interpolated strings:
-Syntax that makes possible to instert literal expressions inside string literals.
+Syntax that makes possible to instert literal expressions (any literal expression, like calls, sums, etc, even string literals) inside string literals.
 ```csharp
 char dollar = '$';
 Console.WriteLine($"An interpolated string has to start with a {dollar}.");
+Console.WriteLine($"An interpolated string has to start with a {'$'}."); // Also valid
+Console.WriteLine($"An interpolated string has to start with a {"$"}."); // Also valid (kinda pointless tho)
 ```
 ### Tuples:
 
