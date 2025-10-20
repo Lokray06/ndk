@@ -459,3 +459,14 @@ byte s = 5; s >>= 1; // Right Shift and assign: s = 2
 ### Write the collections namespace
 
 ### Finish the io namespace: Files, etc...
+
+```csharp
+
+    ulong b = 2UL;
+    uint64 b = 264;
+    
+    int32 d = 2e+32;
+
+    byte a = 3L & 3;
+
+```

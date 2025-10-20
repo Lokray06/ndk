@@ -1,0 +1,95 @@
+/*
+    Definitions for all the primitive types known to the compiler.
+*/
+namespace nebula.core
+{
+    // Boolean
+    native public struct Bool
+    {
+        native public string toString();
+    }
+
+    // Integers
+    native public struct Int8
+    {
+        // No need to be native cause its a constant
+        public static const int MIN = -128;
+        public static const int MAX = 127;
+        // Native sso its implemented in the C or C++ runtime
+        native public string toString();
+    }
+
+    native public struct Int16
+    {
+        public static const int MIN = -32768;
+        public static const int MAX = 32767;
+        native public string toString();
+    }
+
+    native public struct Int32
+    {
+        public static const int MIN = -2147483648;
+        public static const int MAX = 2147483647;
+        native public string toString();
+    }
+
+    native public struct Int64
+    {
+        public static const long MIN = -9223372036854775808L;
+        public static const long MAX = 9223372036854775807L;
+        native public string toString();
+    }
+
+    // Unsigned Integers
+    native public struct UInt8
+    {
+        public static const int MIN = 0;
+        public static const int MAX = 255;
+        native public string toString();
+    }
+    native public struct UInt16
+    {
+        public static const int MIN = 0;
+        public static const int MAX = 65535;
+        native public string toString();
+    }
+    native public struct UInt32
+    {
+        public static const uint MIN = (uint)0;
+        public static const uint MAX = (uint)4294967295L; // Use L suffix and cast
+        native public string toString();
+    }
+    native public struct UInt64
+    {
+        // This value is too large even for a signed long,
+        // the compiler will need special handling for unsigned long literals in the future.
+        // For now, we can represent it via its signed equivalent bits if needed or omit it.
+        // Or, if your runtime can handle it from a string, that's another option.
+        // Let's use the MAX signed long and cast it for now, acknowledging it's not the true MAX.
+        public static const ulong MIN = 0;
+        public static const ulong MAX = (ulong)9223372036854775807L; // Placeholder
+        native public string toString();
+    }
+
+    // Floating Point
+    native public struct Float
+    {
+        public static const float MAX = 3.40282347e+38F; // Scientific notation now works
+        public static const float MIN = -3.40282347e+38F;
+        native public string toString();
+    }
+    native public struct Double
+    {
+        public static const double MAX = 1.7976931348623157e+308; // Scientific notation now works
+        public static const double MIN = -1.7976931348623157e+308;
+        native public string toString();
+    }
+
+    // Character
+    native public struct Char
+    {
+        public static const char MAX = '\uFFFF';
+        public static const char MIN = '\u0000';
+        native public string toString();
+    }
+}

@@ -1,8 +1,8 @@
 namespace nebula.core
 {
-    native class Object
+    native public class Object
     {
         native public string toString();
-        native public int getHashCode();
+        native public int hash;
     }
 }

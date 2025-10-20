@@ -1,25 +1,33 @@
 import nebula.core.Object;
 import nebula.core.String;
 
-namespace nebula.io
+namespace nebula.core.io
 {
     native class Console
     {
         // --- Print Methods ---
         native public static void print(Object anything);
-        native public static void print(string anyString);
+        native public static void print(bool boolean);
         native public static void print(char character);
+        native public static void print(string anyString);
+        native public static void print(byte number);
+        native public static void print(short number);
         native public static void print(int number);
-        native public static void print(bool booleanValue);
+        native public static void print(long number);
+        native public static void print(float number);
         native public static void print(double number);
 
         // --- println Methods ---
         native public static void println();
         native public static void println(Object anything);
-        native public static void println(string anyString);
+        native public static void println(bool boolean);
         native public static void println(char character);
+        native public static void println(string anyString);
+        native public static void println(byte number);
+        native public static void println(short number);
         native public static void println(int number);
-        native public static void println(bool booleanValue);
+        native public static void println(long number);
+        native public static void println(float number);
         native public static void println(double number);
 
         // --- Input Methods ---
