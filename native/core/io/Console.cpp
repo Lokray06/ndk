@@ -6,7 +6,7 @@
 
 // We must assume the 'string' type and 'string_print' function
 // are defined elsewhere (via Console.h -> String.h)
-extern "C" void string_print(const string *s);
+extern "C" void string_print(const nebula_String_t *s);
 
 
 extern "C"
@@ -32,7 +32,7 @@ extern "C"
         write(1, &character, 1);
     }
 
-    void nebula_core_io_Console_print__string__void(const string *anyString)
+    void nebula_core_io_Console_print__string__void(const nebula_String_t *anyString)
     {
         // This function's implementation is external. We assume string_print
         // correctly handles its own output (hopefully using write).
@@ -144,7 +144,7 @@ extern "C"
         nebula_core_io_Console_println___void();
     }
 
-    void nebula_core_io_Console_println__string___void(const string *anyString)
+    void nebula_core_io_Console_println__string___void(const nebula_String_t *anyString)
     {
         nebula_core_io_Console_print__string__void(anyString);
         nebula_core_io_Console_println___void();

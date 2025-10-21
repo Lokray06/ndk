@@ -1,5 +1,6 @@
 #include "String.h"
-#include <iostream>
+#include <cstdio>   // for snprintf
+#include <unistd.h> // for write
 #include <cstring>
 
 // This file implements the native methods for the nebula.core.String class.
@@ -20,7 +21,12 @@ extern "C"
         if (index < 0 || (uint32_t)index >= self->length)
         {
             // Runtime Error handling here
-            std::cerr << "Runtime Error: String index out of bounds (" << index << ")." << std::endl;
+            char buf[128];
+            int len = snprintf(buf, sizeof(buf), "Runtime Error: String index out of bounds (%d).\n", index);
+            if (len > 0)
+            {
+                write(2, buf, len); // 2 = stderr
+            }
             return 0;
         }
         return self->data[index];
@@ -33,7 +39,7 @@ extern "C"
             return true;
         if (self->length != other->length)
             return false;
-        return std::memcmp(self->data, other->data, self->length) == 0;
+        return memcmp(self->data, other->data, self->length) == 0;
     }
 
     // native public string toString();
@@ -50,7 +56,7 @@ extern "C"
         if (s && s->data)
         {
             // Output the data using the length field
-            std::cout.write(s->data, s->length);
+            write(1, s->data, s->length); // Replaces std::cout.write
         }
     }
 

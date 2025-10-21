@@ -16,6 +16,6 @@ typedef struct
     uint32_t length;
 } nebula_String_t;
 
-typedef nebula_String_t string;
+// typedef nebula_String_t string;
 
 #endif
