@@ -15,7 +15,7 @@ extern "C"
     //  extern void string_print(const nebula_String_t *s);
     // --- Print Utilities: Use write() and snprintf() for formatting ---
 
-    void nebula_core_io_Console_print__bool__void(bool boolean)
+    void nebula_core_io_Console_print__bool___void(bool boolean)
     {
         if (boolean) {
             // Write "true" to stdout
@@ -26,13 +26,13 @@ extern "C"
         }
     }
 
-    void nebula_core_io_Console_print__char__void(char character)
+    void nebula_core_io_Console_print__char___void(char character)
     {
         // Write the single character byte to stdout
         write(1, &character, 1);
     }
 
-    void nebula_core_io_Console_print__string__void(const nebula_String_t *anyString)
+    void nebula_core_io_Console_print__string___void(const nebula_String_t *anyString)
     {
         // This function's implementation is external. We assume string_print
         // correctly handles its own output (hopefully using write).
@@ -40,7 +40,7 @@ extern "C"
     }
 
     // All integer types are converted to string using snprintf
-    void nebula_core_io_Console_print__byte__void(int8_t number)
+    void nebula_core_io_Console_print__byte___void(int8_t number)
     {
         char buf[16]; // Buffer for 8-bit int string
         // Cast to int for snprintf %d formatter
@@ -50,7 +50,7 @@ extern "C"
         }
     }
 
-    void nebula_core_io_Console_print__short__void(int16_t number)
+    void nebula_core_io_Console_print__short___void(int16_t number)
     {
         char buf[16]; // Buffer for 16-bit int string
         int len = snprintf(buf, sizeof(buf), "%d", number);
@@ -59,7 +59,7 @@ extern "C"
         }
     }
 
-    void nebula_core_io_Console_print__int__void(int32_t number)
+    void nebula_core_io_Console_print__int___void(int32_t number)
     {
         char buf[32]; // Buffer for 32-bit int string
         int len = snprintf(buf, sizeof(buf), "%d", number);
@@ -68,7 +68,7 @@ extern "C"
         }
     }
 
-    void nebula_core_io_Console_print__long__void(int64_t number)
+    void nebula_core_io_Console_print__long___void(int64_t number)
     {
         char buf[32]; // Buffer for 64-bit int string
         // Use %lld for long long, which int64_t typically is
@@ -79,7 +79,7 @@ extern "C"
     }
 
     // Floating point types use C library for controlled output
-    void nebula_core_io_Console_print__float__void(float number)
+    void nebula_core_io_Console_print__float___void(float number)
     {
         char buf[128]; // Buffer for float string formatting
         int len = snprintf(buf, sizeof(buf), "%g", number);
@@ -88,7 +88,7 @@ extern "C"
         }
     }
 
-    void nebula_core_io_Console_print__double__void(double number)
+    void nebula_core_io_Console_print__double___void(double number)
     {
         char buf[256]; // Buffer for double string formatting
         int len = snprintf(buf, sizeof(buf), "%g", number);
@@ -134,55 +134,55 @@ extern "C"
 
     void nebula_core_io_Console_println__bool___void(bool boolean)
     {
-        nebula_core_io_Console_print__bool__void(boolean);
+        nebula_core_io_Console_print__bool___void(boolean);
         nebula_core_io_Console_println___void();
     }
 
     void nebula_core_io_Console_println__char___void(char character)
     {
-        nebula_core_io_Console_print__char__void(character);
+        nebula_core_io_Console_print__char___void(character);
         nebula_core_io_Console_println___void();
     }
 
     void nebula_core_io_Console_println__string___void(const nebula_String_t *anyString)
     {
-        nebula_core_io_Console_print__string__void(anyString);
+        nebula_core_io_Console_print__string___void(anyString);
         nebula_core_io_Console_println___void();
     }
 
     void nebula_core_io_Console_println__byte___void(int8_t number)
     {
-        nebula_core_io_Console_print__byte__void(number);
+        nebula_core_io_Console_print__byte___void(number);
         nebula_core_io_Console_println___void();
     }
 
     void nebula_core_io_Console_println__short___void(int16_t number)
     {
-        nebula_core_io_Console_print__short__void(number);
+        nebula_core_io_Console_print__short___void(number);
         nebula_core_io_Console_println___void();
     }
 
     void nebula_core_io_Console_println__int___void(int32_t number)
     {
-        nebula_core_io_Console_print__int__void(number);
+        nebula_core_io_Console_print__int___void(number);
         nebula_core_io_Console_println___void();
     }
 
     void nebula_core_io_Console_println__long___void(int64_t number)
     {
-        nebula_core_io_Console_print__long__void(number);
+        nebula_core_io_Console_print__long___void(number);
         nebula_core_io_Console_println___void();
     }
 
     void nebula_core_io_Console_println__float___void(float number)
     {
-        nebula_core_io_Console_print__float__void(number);
+        nebula_core_io_Console_print__float___void(number);
         nebula_core_io_Console_println___void();
     }
 
     void nebula_core_io_Console_println__double___void(double number)
     {
-        nebula_core_io_Console_print__double__void(number);
+        nebula_core_io_Console_print__double___void(number);
         nebula_core_io_Console_println___void();
     }
     /*
