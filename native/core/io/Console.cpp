@@ -2,7 +2,6 @@
 #include <unistd.h> // For write
 #include <cstdio>   // For snprintf
 #include <cstdint>  // For intX_t types
-// <iostream> and <string> are no longer needed for output
 
 // We must assume the 'string' type and 'string_print' function
 // are defined elsewhere (via Console.h -> String.h)

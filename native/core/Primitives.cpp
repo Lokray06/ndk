@@ -1,8 +1,9 @@
 #include "Primitives.h"
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
-#include <string>
+#include <cstdio>   // for snprintf
+#include <cstdlib>  // for malloc/free
+#include <cstring>  // for strlen/memcpy
+#include <limits.h> // for LLONG_MAX, ULLONG_MAX
+#include <cerrno>   // for errno (though not strictly needed here, good for C)
 
 // Helper to create a heap-allocated nebula_String_t from a C-style char* buffer.
 // This is necessary for Primitives::toString() as the resulting string is usually
@@ -31,6 +32,27 @@ nebula_String_t *create_heap_string(const char *c_str)
     return new_str;
 }
 
+// Function to convert a signed long long to a decimal string using C library
+// This replaces std::to_string for signed integers.
+// Buffer size 22 is enough for int64_t (max 19 digits + sign + null).
+static const char* lltostr(long long val, char* buf) {
+    // This uses snprintf to format the number into the provided buffer
+    // It's a C-only approach.
+    std::snprintf(buf, 22, "%lld", val);
+    return buf;
+}
+
+// Function to convert an unsigned long long to a decimal string using C library
+// This replaces std::to_string for unsigned integers.
+// Buffer size 22 is enough for uint64_t (max 20 digits + null).
+static const char* ulltostr(unsigned long long val, char* buf) {
+    // This uses snprintf to format the number into the provided buffer
+    // It's a C-only approach.
+    std::snprintf(buf, 22, "%llu", val);
+    return buf;
+}
+
+
 extern "C"
 {
 
@@ -41,70 +63,73 @@ extern "C"
     }
 
     // --- Integers ---
+    // Max buffer size for 64-bit int is 22 (sign + 19 digits + null). We'll use 24 for safety.
 
     nebula_String_t *nebula_core_Int8_toString__string(int8_t self)
     {
-        std::string s = std::to_string(self);
-        return create_heap_string(s.c_str());
+        char buffer[24];
+        return create_heap_string(lltostr(self, buffer));
     }
 
     nebula_String_t *nebula_core_Int16_toString__string(int16_t self)
     {
-        std::string s = std::to_string(self);
-        return create_heap_string(s.c_str());
+        char buffer[24];
+        return create_heap_string(lltostr(self, buffer));
     }
 
     nebula_String_t *nebula_core_Int32_toString__string(int32_t self)
     {
-        std::string s = std::to_string(self);
-        return create_heap_string(s.c_str());
+        char buffer[24];
+        return create_heap_string(lltostr(self, buffer));
     }
 
     nebula_String_t *nebula_core_Int64_toString__string(int64_t self)
     {
-        std::string s = std::to_string(self);
-        return create_heap_string(s.c_str());
+        char buffer[24];
+        return create_heap_string(lltostr(self, buffer));
     }
 
     // --- Unsigned Integers ---
 
     nebula_String_t *nebula_core_UInt8_toString__string(uint8_t self)
     {
-        std::string s = std::to_string(self);
-        return create_heap_string(s.c_str());
+        char buffer[24];
+        return create_heap_string(ulltostr(self, buffer));
     }
 
     nebula_String_t *nebula_core_UInt16_toString__string(uint16_t self)
     {
-        std::string s = std::to_string(self);
-        return create_heap_string(s.c_str());
+        char buffer[24];
+        return create_heap_string(ulltostr(self, buffer));
     }
 
     nebula_String_t *nebula_core_UInt32_toString__string(uint32_t self)
     {
-        std::string s = std::to_string(self);
-        return create_heap_string(s.c_str());
+        char buffer[24];
+        return create_heap_string(ulltostr(self, buffer));
     }
 
     nebula_String_t *nebula_core_UInt64_toString__string(uint64_t self)
     {
-        std::string s = std::to_string(self);
-        return create_heap_string(s.c_str());
+        char buffer[24];
+        return create_heap_string(ulltostr(self, buffer));
     }
 
     // --- Floating Point ---
 
     nebula_String_t *nebula_core_Float_toString__string(float self)
     {
-        // Use snprintf for precise float formatting
+        // Max buffer size for float is 32.
         char buffer[32];
+        // Use snprintf for precise float formatting (C standard library)
         std::snprintf(buffer, sizeof(buffer), "%.6g", self);
         return create_heap_string(buffer);
     }
 
     nebula_String_t *nebula_core_Double_toString__string(double self)
     {
-        char buffer[32];
+        // Max buffer size for double is 32 (often larger, but 32 is a decent minimum).
+        char buffer[64]; // Use 64 for better safety
         std::snprintf(buffer, sizeof(buffer), "%.15g", self);
         return create_heap_string(buffer);
     }
