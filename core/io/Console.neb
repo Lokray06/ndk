@@ -51,6 +51,7 @@ namespace nebula.core.io
         native public static void println(byte number);
         native public static void println(short number);
         native public static void println(int number);
+        native public static void println(uint number);
         native public static void println(long number);
 
         // Unsigned integers
