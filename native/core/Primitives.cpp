@@ -28,9 +28,30 @@ nebula_String_t *create_heap_string(const char *c_str)
     }
 
     new_str->data = data;
+    // NOTE: We cast away const here in Primitives.cpp implementation to handle the memory we allocated.
+    // However, the header still uses `const char *data` for the String ABI definition in String.h.
     new_str->length = len;
     return new_str;
 }
+
+// Function to correctly destroy a heap-allocated nebula_String_t created by create_heap_string.
+// It frees both the internal data buffer and the String object structure itself.
+extern "C"
+void destroy_heap_string(nebula_String_t *heap_str)
+{
+    if (heap_str != nullptr)
+    {
+        // Free the internal data buffer first
+        if (heap_str->data != nullptr)
+        {
+            // Cast away const to free the memory allocated by create_heap_string
+            std::free((void*)heap_str->data);
+        }
+        // Free the String struct itself
+        std::free(heap_str);
+    }
+}
+
 
 // Function to convert a signed long long to a decimal string using C library
 // This replaces std::to_string for signed integers.
@@ -128,8 +149,8 @@ extern "C"
 
     nebula_String_t *nebula_core_Double_toString__string(double self)
     {
-        // Max buffer size for double is 32 (often larger, but 32 is a decent minimum).
-        char buffer[64]; // Use 64 for better safety
+        // Max buffer size for double is 64.
+        char buffer[64];
         std::snprintf(buffer, sizeof(buffer), "%.15g", self);
         return create_heap_string(buffer);
     }

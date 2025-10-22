@@ -7,10 +7,14 @@
 extern "C"
 {
 
+// Helper for cleaning up heap-allocated strings returned by toString methods.
+// Must be called after using the string pointer in temporary contexts.
+void destroy_heap_string(nebula_String_t *heap_str);
+
 // --- Bool ---
 nebula_String_t* nebula_core_Bool_toString__string(bool self);
 
-// --- Integers ---
+// --- Signed Integers ---
 nebula_String_t* nebula_core_Int8_toString__string(int8_t self);
 nebula_String_t* nebula_core_Int16_toString__string(int16_t self);
 nebula_String_t* nebula_core_Int32_toString__string(int32_t self);

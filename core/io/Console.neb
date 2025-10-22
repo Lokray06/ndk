@@ -5,32 +5,62 @@ namespace nebula.core.io
 {
     native class Console
     {
+        // ---------------------
         // --- Print Methods ---
+        // ---------------------
+        // Misc
         native public static void print(Object anything);
-        native public static void print(bool boolean);
+
+        // String and character
         native public static void print(char character);
         native public static void print(string anyString);
+
+        // Boolean
+        native public static void print(bool boolean);
+
+        // Signed integers
         native public static void print(byte number);
         native public static void print(short number);
         native public static void print(int number);
         native public static void print(long number);
+
+        // Unsigned integers
+        native public static void print(ubyte number);
+        native public static void print(ushort number);
+        native public static void print(uint number);
+        native public static void print(ulong number);
+
+        // Floating point
         native public static void print(float number);
         native public static void print(double number);
 
-        // --- println Methods ---
-        native public static void println();
+        // ---------------------
+        // --- Print Methods ---
+        // ---------------------
+        // Misc
         native public static void println(Object anything);
-        native public static void println(bool boolean);
+
+        // String and character
         native public static void println(char character);
         native public static void println(string anyString);
+
+        // Boolean
+        native public static void println(bool boolean);
+
+        // Signed integers
         native public static void println(byte number);
         native public static void println(short number);
         native public static void println(int number);
         native public static void println(long number);
+
+        // Unsigned integers
+        native public static void println(ubyte number);
+        native public static void println(ushort number);
+        native public static void println(uint number);
+        native public static void println(ulong number);
+
+        // Floating point
         native public static void println(float number);
         native public static void println(double number);
-
-        // --- Input Methods ---
-        native public static string readLine();
     }
 }
