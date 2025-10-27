@@ -1,0 +1,14 @@
+namespace nebula.core
+{  
+    // --- Array ---
+    // Represents the raw fixed-size array concept T[]
+    // We don't need native methods right now, but declaring it helps
+    // structure the NDK.
+    native public struct Array
+    {
+        // Potential future native fields/methods:
+        // native public int length; // Would require ABI support
+        // native public T get(int index); // Requires generics or type specialization
+        // native public void set(int index, T value);
+    }
+}
