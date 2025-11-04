@@ -1,6 +1,3 @@
-import nebula.core.Object;
-import nebula.core.String;
-
 namespace nebula.core.io
 {
     native class Console
@@ -25,7 +22,7 @@ namespace nebula.core.io
         native public static void print(long number);
 
         // Unsigned integers
-        native public static void print(ubyte number);
+        native public static void print(byte number);
         native public static void print(ushort number);
         native public static void print(uint number);
         native public static void print(ulong number);
@@ -54,7 +51,7 @@ namespace nebula.core.io
         native public static void println(long number);
 
         // Unsigned integers
-        native public static void println(ubyte number);
+        native public static void println(byte number);
         native public static void println(ushort number);
         native public static void println(uint number);
         native public static void println(ulong number);

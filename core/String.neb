@@ -15,29 +15,4 @@ namespace nebula.core
             Console.println(this);
         }
     }
-    
-    // Potential addition
-    /*
-    native immutable class String
-    {
-        native public int length();
-        native public char charAt(int index);
-        native public string substring(int start, int length);
-        native public bool equals(string other);
-        native public string concat(string other);
-        native public int indexOf(char c);
-    }
-
-    native class MutableString
-    {
-        native public int length();
-        native public void append(string other);
-        native public void insert(int index, string value);
-        native public void remove(int start, int length);
-        native public char charAt(int index);
-        native public void setCharAt(int index, char c);
-        native public void clear();
-        native public string toString();
-    }
-    */
 }

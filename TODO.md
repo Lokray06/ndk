@@ -10,6 +10,10 @@
 * Better operators
 * Optional namespace
 #### Pending Features ❌
+* Fully implement arrays (accessing, declaring, etc)
+* Implement operator overloading
+* Implement the string type as a char[] so that  define string manipulation methods as operator overloading using operator[]
+* Make the neblib format a bundle of: json symbol table + metadata + library compilation itself (.so, .dll, etc), original .nebproj file.
 * Named parameters
 * Interpolated strings
 * Tuples
