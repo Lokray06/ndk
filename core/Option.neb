@@ -1,0 +1,10 @@
+namespace nebula.core
+{
+    // 2. Optional: Union of a Value (T) OR Nothing (Unit)
+    // 'None' has an empty payload, which is known as a Unit Type.
+    public tagged union Optional<T>
+    {
+        some(T value),
+        nome, // No parenthesis means no payload
+    }
+}
