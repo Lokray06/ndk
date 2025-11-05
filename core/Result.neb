@@ -1,0 +1,13 @@
+namespace nebula.core
+{
+    public class Result<T, E>
+    {
+        // 1. Result: Union of a Success Value (T) OR an Error Value (E)
+        // The compiler knows 'T' is the payload for 'Ok' and 'E' is the payload for 'Error'.
+        private tagged union <T, E>
+        {
+            ok(T),
+            error(E),
+        } result;
+    }
+}
