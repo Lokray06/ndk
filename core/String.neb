@@ -10,6 +10,7 @@ namespace nebula.core
         native public int indexOf(char c);
 
         // TODO: FIX -> Testing normal code withing the library (failed cause the compiler doesnt yet generate IR and compile normal code, only does native immplentations)
+        // This now fully works
         public void printSelf()
         {
             Console.println(this);
