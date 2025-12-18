@@ -38,9 +38,9 @@ extern "C" {
 
     /**
      * Native implementation for: native public int length; (GET)
-     * Mangled name for: nebula_core_Array_get_length___int
+     * Mangled name for: nebula_core_Array_get_len___int
      */
-    int32_t nebula_core_Array_get_length___int(nebula_Array_t* self);
+    int32_t nebula_core_Array_get_len___int(nebula_Array_t* self);
 
 }
 

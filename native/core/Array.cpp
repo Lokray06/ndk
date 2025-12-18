@@ -19,9 +19,9 @@ extern "C" {
 
     /**
      * Native implementation for: native public int length; (GET)
-     * Mangled name: nebula_core_Array_get_length___int
+     * Mangled name: nebula_core_Array_get_len___int
      */
-    int32_t nebula_core_Array_get_length___int(nebula_Array_t* self) {
+    int32_t nebula_core_Array_get_len___int(nebula_Array_t* self) {
         if (!self) {
              runtime_error("Runtime Error: Cannot read length of null array.");
         }

@@ -27,6 +27,6 @@ namespace nebula.core
         * This is handled by the compiler's IRGenerator, which
         * loads the 'size' field from the nebula_Array_t struct.
         */
-        native public int length;
+        native public int len;
     }
 }

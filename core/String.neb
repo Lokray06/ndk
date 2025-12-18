@@ -2,18 +2,11 @@ namespace nebula.core
 {
     native public class String
     {   
-        native public int length;
+        native public int len;
         native public char charAt(int index);
         native public string substring(int start, int length);
         native public bool equals(string other);
         native public string concat(string other);
         native public int indexOf(char c);
-
-        // TODO: FIX -> Testing normal code withing the library (failed cause the compiler doesnt yet generate IR and compile normal code, only does native immplentations)
-        // This now fully works
-        public void printSelf()
-        {
-            Console.println(this);
-        }
     }
 }
